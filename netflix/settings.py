@@ -28,7 +28,7 @@ DATABASE_URL = "postgresql://postgres:RcD9hIJF4ASwRa85EvLG@containers-us-west-14
 SECRET_KEY = 'django-insecure-+yc#+osya%@83j_3q&m7t=-n65)svt^(gu#3+7*%@-e*w3z)vo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -135,6 +135,12 @@ SITE_ID = 1
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+
+if DEBUG:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+    
 #set media url and media file location 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
