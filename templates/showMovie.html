@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block context %}
+
+<main class='bg-primary_black h-full w-full '>
+    {{movie | json_script:"movie_data"}}
+        
+    {% comment %} <video src="" id="cspd_video" controls class="w-full h-screen player"></video> {% endcomment %}
+    <video class="w-full h-screen player"  id="cspd_video" controls>
+      <source src type="video/mp4">
+   </video>
+    
+</main>
+<script> 
+    const videoE1 = document.querySelector('video')
+    const movie_data = JSON.parse(document.getElementById('movie_data').textContent)
+    const url = new URL(location.href)
+    const video_param = parseInt(url.searchParams.get('epi'))?parseInt(url.searchParams.get('epi')):0
+    videoE1.setAttribute('src',`http://127.0.0.1:8000/media/${movie_data[video_param].file}`)
+
+    var theVideo = document.getElementById("cspd_video");
+  document.onkeydown = function(event) {
+      switch (event.keyCode) {
+         case 37:
+              event.preventDefault();
+              
+              vid_currentTime = theVideo.currentTime;
+              theVideo.currentTime = vid_currentTime - 5;
+            break;
+         
+         case 39:
+              event.preventDefault();
+              
+              vid_currentTime = theVideo.currentTime;
+              theVideo.currentTime = vid_currentTime + 5;
+            break;
+         
+      }
+    };
+</script>
+
+
+
+
+
+
+{% endblock context %}
+
+
+
+
+
+
