@@ -28,7 +28,7 @@ DATABASE_URL = "postgresql://postgres:RcD9hIJF4ASwRa85EvLG@containers-us-west-14
 SECRET_KEY = 'django-insecure-+yc#+osya%@83j_3q&m7t=-n65)svt^(gu#3+7*%@-e*w3z)vo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -84,8 +84,12 @@ WSGI_APPLICATION = 'netflix.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
    
-    'default': dj_database_url.config(default=DATABASE_URL,conn_max_age=1800),
+    # 'default': dj_database_url.config(default=DATABASE_URL,conn_max_age=1800),
 }
 
 # import os
